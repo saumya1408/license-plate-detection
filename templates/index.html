@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>License Plate Detection</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/static/css/styles.css">
+</head>
+<body class="bg-gray-100 font-sans">
+    <div class="container mx-auto p-6 max-w-4xl">
+        <h1 class="text-3xl font-bold text-center text-blue-600 mb-6 animate-pulse">License Plate Detection</h1>
+        <div class="bg-white p-6 rounded-lg shadow-lg mb-6">
+            <h2 class="text-xl font-semibold mb-4">Upload Image</h2>
+            <input type="file" id="imageUpload" accept="image/*" class="mb-4 p-2 border rounded w-full">
+            <button onclick="processImage('upload')" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition duration-300">Process Uploaded Image</button>
+        </div>
+        <div class="bg-white p-6 rounded-lg shadow-lg mb-6">
+            <h2 class="text-xl font-semibold mb-4">Select Predefined Image</h2>
+            <select id="imageSelect" class="mb-4 p-2 border rounded w-full">
+                <option value="">Select an image</option>
+                {% for image in car_images %}
+                    <option value="{{ image }}">{{ image }}</option>
+                {% endfor %}
+            </select>
+            <button onclick="processImage('select')" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition duration-300">Process Selected Image</button>
+        </div>
+        <div id="result" class="hidden bg-white p-6 rounded-lg shadow-lg">
+            <h2 class="text-xl font-semibold mb-4">Result</h2>
+            <p id="resultText" class="mb-4 text-lg"></p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="step" id="step-original">
+                    <h3 class="text-lg font-medium">Original Image</h3>
+                    <img id="originalImage" class="w-full rounded shadow" alt="Original Image">
+                </div>
+                <div class="step" id="step-grayscale">
+                    <h3 class="text-lg font-medium">Grayscale Image</h3>
+                    <img id="grayscaleImage" class="w-full rounded shadow" alt="Grayscale Image">
+                </div>
+                <div class="step" id="step-edge">
+                    <h3 class="text-lg font-medium">Edge Detection</h3>
+                    <img id="edgeImage" class="w-full rounded shadow" alt="Edge Detection">
+                </div>
+                <div class="step" id="step-contoured">
+                    <h3 class="text-lg font-medium">Contour Detection</h3>
+                    <img id="contouredImage" class="w-full rounded shadow" alt="Contour Detection">
+                </div>
+                <div class="step" id="step-cropped">
+                    <h3 class="text-lg font-medium">Cropped License Plate</h3>
+                    <img id="croppedImage" class="w-full rounded shadow" alt="Cropped License Plate">
+                </div>
+                <div class="step" id="step-annotated">
+                    <h3 class="text-lg font-medium">Final Annotated Image</h3>
+                    <img id="resultImage" class="w-full rounded shadow" alt="Final Annotated Image">
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="/static/js/script.js"></script>
+</body>
+</html>

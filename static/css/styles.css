@@ -1,0 +1,12 @@
+.hidden {
+    display: none;
+}
+.step {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+.step.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
