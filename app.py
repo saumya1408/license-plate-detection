@@ -84,7 +84,6 @@ def process_image():
         logging.error(f"Error in process_image: {str(e)}")
         return jsonify({'error': str(e)}), 500
     
-    ## xyz
 
 if __name__ == '__main__':
     app.run(debug=True)
